@@ -1,0 +1,341 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Timer - Intern Workplace Assistant</title>
+    <!-- Tailwind CSS CDN -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <!-- Font Awesome CDN -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+            background-color: #f5f5f7;
+            color: #333;
+        }
+        .mac-app {
+            border-radius: 10px;
+            box-shadow: 0 4px 20px rgba(0,0,0,0.08);
+            background-color: rgba(255, 255, 255, 0.95);
+            width: 100%;
+            height: 100vh;
+            overflow: hidden;
+        }
+        .mac-title-bar {
+            background: linear-gradient(90deg, #f6f6f6, #f1f1f1);
+            height: 28px;
+            border-bottom: 1px solid #e1e1e1;
+            display: flex;
+            align-items: center;
+            padding: 0 12px;
+        }
+        .mac-buttons {
+            display: flex;
+            gap: 8px;
+        }
+        .mac-button {
+            width: 12px;
+            height: 12px;
+            border-radius: 50%;
+        }
+        .mac-close {
+            background-color: #ff5f57;
+            border: 1px solid rgba(0,0,0,0.1);
+        }
+        .mac-minimize {
+            background-color: #ffbd2e;
+            border: 1px solid rgba(0,0,0,0.1);
+        }
+        .mac-maximize {
+            background-color: #28c940;
+            border: 1px solid rgba(0,0,0,0.1);
+        }
+        .sidebar-item {
+            border-radius: 6px;
+            transition: all 0.2s;
+        }
+        .sidebar-item:hover {
+            background-color: rgba(0,0,0,0.05);
+        }
+        .sidebar-item.active {
+            background-color: rgba(0, 122, 255, 0.1);
+            color: #007AFF;
+        }
+        .timer-card {
+            border-radius: 10px;
+            transition: all 0.2s;
+        }
+        .timer-card:hover {
+            box-shadow: 0 4px 12px rgba(0,0,0,0.08);
+        }
+        .timer-display {
+            font-family: monospace;
+            font-size: 3.5rem;
+            font-weight: 600;
+            letter-spacing: 2px;
+        }
+        .timer-button {
+            transition: all 0.2s;
+        }
+        .timer-button:hover {
+            transform: translateY(-2px);
+        }
+        .tab-active {
+            color: #007AFF;
+            border-bottom: 2px solid #007AFF;
+        }
+        .progress-bar {
+            height: 8px;
+            border-radius: 4px;
+            overflow: hidden;
+        }
+        .progress-value {
+            height: 100%;
+            transition: width 0.3s ease;
+        }
+        .history-item {
+            transition: all 0.2s;
+        }
+        .history-item:hover {
+            background-color: rgba(0,0,0,0.02);
+        }
+    </style>
+</head>
+<body>
+    <div class="mac-app">
+        <div class="mac-title-bar">
+            <div class="mac-buttons">
+                <div class="mac-button mac-close"></div>
+                <div class="mac-button mac-minimize"></div>
+                <div class="mac-button mac-maximize"></div>
+            </div>
+        </div>
+        
+        <div class="flex h-full">
+            <!-- Sidebar -->
+            <div class="w-64 bg-white border-r border-gray-200 p-4">
+                <div class="flex items-center mb-8">
+                    <div class="w-10 h-10 rounded-full bg-blue-500 flex items-center justify-center text-white">
+                        <i class="fas fa-user"></i>
+                    </div>
+                    <div class="ml-3">
+                        <h2 class="font-semibold">Alex Smith</h2>
+                        <p class="text-xs text-gray-500">Marketing Intern</p>
+                    </div>
+                </div>
+                
+                <nav>
+                    <div class="text-xs uppercase text-gray-500 font-semibold mb-2">Main Features</div>
+                    <ul>
+                        <li class="mb-1">
+                            <a href="dashboard.html" class="sidebar-item flex items-center p-2">
+                                <i class="fas fa-home w-6"></i>
+                                <span>Dashboard</span>
+                            </a>
+                        </li>
+                        <li class="mb-1">
+                            <a href="questions.html" class="sidebar-item flex items-center p-2">
+                                <i class="fas fa-question-circle w-6"></i>
+                                <span>Questions & Answers</span>
+                            </a>
+                        </li>
+                        <li class="mb-1">
+                            <a href="dictionary.html" class="sidebar-item flex items-center p-2">
+                                <i class="fas fa-book w-6"></i>
+                                <span>Company Dictionary</span>
+                            </a>
+                        </li>
+                        <li class="mb-1">
+                            <a href="anonymous_questions.html" class="sidebar-item flex items-center p-2">
+                                <i class="fas fa-mask w-6"></i>
+                                <span>Anonymous Questions</span>
+                            </a>
+                        </li>
+                        <li class="mb-1">
+                            <a href="status_tracker.html" class="sidebar-item flex items-center p-2">
+                                <i class="fas fa-chart-line w-6"></i>
+                                <span>Status Tracker</span>
+                            </a>
+                        </li>
+                        <li class="mb-1">
+                            <a href="timer.html" class="sidebar-item active flex items-center p-2">
+                                <i class="fas fa-clock w-6"></i>
+                                <span>Timer</span>
+                            </a>
+                        </li>
+                        <li class="mb-1">
+                            <a href="knowledge_base.html" class="sidebar-item flex items-center p-2">
+                                <i class="fas fa-database w-6"></i>
+                                <span>Knowledge Base</span>
+                            </a>
+                        </li>
+                    </ul>
+                    
+                    <div class="text-xs uppercase text-gray-500 font-semibold mt-6 mb-2">Others</div>
+                    <ul>
+                        <li class="mb-1">
+                            <a href="settings.html" class="sidebar-item flex items-center p-2">
+                                <i class="fas fa-cog w-6"></i>
+                                <span>Settings</span>
+                            </a>
+                        </li>
+                        <li class="mb-1">
+                            <a href="index.html" class="sidebar-item flex items-center p-2">
+                                <i class="fas fa-sign-out-alt w-6"></i>
+                                <span>Log Out</span>
+                            </a>
+                        </li>
+                    </ul>
+                </nav>
+            </div>
+            
+            <!-- Main Content Area -->
+            <div class="flex-1 p-6 overflow-y-auto">
+                <div class="flex justify-between items-center mb-6">
+                    <h1 class="text-2xl font-bold">Self-Help Timer</h1>
+                    <div class="text-sm bg-blue-100 text-blue-800 px-3 py-1 rounded-full">
+                        Recommended self-help time: 30 minutes
+                    </div>
+                </div>
+                
+                <!-- Timer Main Area -->
+                <div class="bg-white rounded-lg shadow-sm p-6 mb-6">
+                    <div class="flex flex-col items-center mb-6">
+                        <h2 class="text-lg font-semibold mb-2">Currently solving: "Analyzing competitor marketing strategies"</h2>
+                        <p class="text-sm text-gray-600 mb-6">Start trying to solve the problem yourself, you'll be reminded to seek help from your mentor if you exceed the set time</p>
+                        
+                        <div class="w-full max-w-md bg-gray-100 rounded-lg p-6 mb-6">
+                            <div class="timer-display text-center mb-4">00:18:45</div>
+                            <div class="progress-bar bg-gray-200 mb-4">
+                                <div class="progress-value bg-blue-500" style="width: 62%;"></div>
+                            </div>
+                            <div class="flex justify-between text-xs text-gray-500 mb-6">
+                                <span>0 min</span>
+                                <span>30 min</span>
+                            </div>
+                            
+                            <div class="grid grid-cols-3 gap-4">
+                                <button class="timer-button bg-blue-500 text-white rounded-lg py-3 flex items-center justify-center hover:bg-blue-600">
+                                    <i class="fas fa-play mr-2"></i> Continue
+                                </button>
+                                <button class="timer-button bg-gray-200 text-gray-700 rounded-lg py-3 flex items-center justify-center hover:bg-gray-300">
+                                    <i class="fas fa-pause mr-2"></i> Pause
+                                </button>
+                                <button class="timer-button bg-red-500 text-white rounded-lg py-3 flex items-center justify-center hover:bg-red-600">
+                                    <i class="fas fa-stop mr-2"></i> Stop
+                                </button>
+                            </div>
+                        </div>
+                        
+                        <div class="w-full flex gap-4">
+                            <button class="flex-1 bg-green-500 text-white py-3 rounded-lg hover:bg-green-600 transition flex items-center justify-center">
+                                <i class="fas fa-check-circle mr-2"></i> Solved It
+                            </button>
+                            <button class="flex-1 bg-red-100 text-red-600 py-3 rounded-lg hover:bg-red-200 transition flex items-center justify-center">
+                                <i class="fas fa-question-circle mr-2"></i> Ask Mentor for Help
+                            </button>
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- Tabs -->
+                <div class="border-b border-gray-200 mb-6">
+                    <div class="flex space-x-8">
+                        <button class="tab-active px-4 py-2 text-sm font-medium focus:outline-none">
+                            Today's Tasks
+                        </button>
+                        <button class="px-4 py-2 text-sm font-medium text-gray-500 hover:text-gray-700 focus:outline-none">
+                            History
+                        </button>
+                        <button class="px-4 py-2 text-sm font-medium text-gray-500 hover:text-gray-700 focus:outline-none">
+                            统计分析
+                        </button>
+                    </div>
+                </div>
+                
+                <!-- 今日任务列表 -->
+                <div class="space-y-4 mb-8">
+                    <div class="timer-card bg-white p-4 rounded-lg border border-gray-200 shadow-sm">
+                        <div class="flex justify-between mb-2">
+                            <div class="flex items-center">
+                                <div class="w-2 h-2 bg-green-500 rounded-full mr-2"></div>
+                                <h3 class="font-medium">市场调研报告撰写</h3>
+                            </div>
+                            <div class="flex items-center text-sm text-gray-500">
+                                <span class="mr-3">01:45:30</span>
+                                <span class="bg-green-100 text-green-600 text-xs px-2 py-0.5 rounded-full">已完成</span>
+                            </div>
+                        </div>
+                        <div class="flex justify-between items-center">
+                            <p class="text-sm text-gray-600">完成了客户市场调研分析，编写了初步报告。</p>
+                            <button class="text-blue-500 hover:text-blue-700">
+                                <i class="fas fa-expand-alt"></i>
+                            </button>
+                        </div>
+                    </div>
+                    
+                    <div class="timer-card bg-white p-4 rounded-lg border-l-4 border-blue-500 border border-gray-200 shadow-sm">
+                        <div class="flex justify-between mb-2">
+                            <div class="flex items-center">
+                                <div class="w-2 h-2 bg-blue-500 rounded-full mr-2"></div>
+                                <h3 class="font-medium">分析竞争对手营销策略</h3>
+                            </div>
+                            <div class="flex items-center text-sm text-gray-500">
+                                <span class="mr-3">00:18:45</span>
+                                <span class="bg-blue-100 text-blue-600 text-xs px-2 py-0.5 rounded-full">进行中</span>
+                            </div>
+                        </div>
+                        <div class="flex justify-between items-center">
+                            <p class="text-sm text-gray-600">对3家主要竞争对手的社交媒体营销策略进行分析。</p>
+                            <button class="text-blue-500 hover:text-blue-700">
+                                <i class="fas fa-expand-alt"></i>
+                            </button>
+                        </div>
+                    </div>
+                    
+                    <div class="timer-card bg-white p-4 rounded-lg border border-gray-200 shadow-sm">
+                        <div class="flex justify-between mb-2">
+                            <div class="flex items-center">
+                                <div class="w-2 h-2 bg-gray-300 rounded-full mr-2"></div>
+                                <h3 class="font-medium">制作营销提案幻灯片</h3>
+                            </div>
+                            <div class="flex items-center text-sm text-gray-500">
+                                <span class="mr-3">00:00:00</span>
+                                <span class="bg-gray-100 text-gray-600 text-xs px-2 py-0.5 rounded-full">未开始</span>
+                            </div>
+                        </div>
+                        <div class="flex justify-between items-center">
+                            <p class="text-sm text-gray-600">为下周一的团队会议准备营销提案幻灯片。</p>
+                            <button class="text-blue-500 hover:text-blue-700">
+                                <i class="fas fa-expand-alt"></i>
+                            </button>
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- 统计信息 -->
+                <div class="grid grid-cols-3 gap-4">
+                    <div class="bg-white p-4 rounded-lg shadow-sm">
+                        <div class="text-sm text-gray-500 mb-2">今日自助解决问题</div>
+                        <div class="text-2xl font-bold mb-1">2 / 3</div>
+                        <div class="text-xs text-gray-500">完成率 66%</div>
+                    </div>
+                    
+                    <div class="bg-white p-4 rounded-lg shadow-sm">
+                        <div class="text-sm text-gray-500 mb-2">平均解决时间</div>
+                        <div class="text-2xl font-bold mb-1">42 分钟</div>
+                        <div class="text-xs text-green-500">↓ 比上周减少 15%</div>
+                    </div>
+                    
+                    <div class="bg-white p-4 rounded-lg shadow-sm">
+                        <div class="text-sm text-gray-500 mb-2">寻求帮助次数</div>
+                        <div class="text-2xl font-bold mb-1">1 次</div>
+                        <div class="text-xs text-red-500">↑ 比上周增加 1 次</div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</body>
+</html>

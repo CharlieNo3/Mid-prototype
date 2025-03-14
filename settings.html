@@ -1,0 +1,417 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Settings - Intern Workplace Assistant</title>
+    <!-- Tailwind CSS CDN -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <!-- Font Awesome CDN -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+            background-color: #f5f5f7;
+            color: #333;
+        }
+        .mac-app {
+            border-radius: 10px;
+            box-shadow: 0 4px 20px rgba(0,0,0,0.08);
+            background-color: rgba(255, 255, 255, 0.95);
+            width: 100%;
+            height: 100vh;
+            overflow: hidden;
+        }
+        .mac-title-bar {
+            background: linear-gradient(90deg, #f6f6f6, #f1f1f1);
+            height: 28px;
+            border-bottom: 1px solid #e1e1e1;
+            display: flex;
+            align-items: center;
+            padding: 0 12px;
+        }
+        .mac-buttons {
+            display: flex;
+            gap: 8px;
+        }
+        .mac-button {
+            width: 12px;
+            height: 12px;
+            border-radius: 50%;
+        }
+        .mac-close {
+            background-color: #ff5f57;
+            border: 1px solid rgba(0,0,0,0.1);
+        }
+        .mac-minimize {
+            background-color: #ffbd2e;
+            border: 1px solid rgba(0,0,0,0.1);
+        }
+        .mac-maximize {
+            background-color: #28c940;
+            border: 1px solid rgba(0,0,0,0.1);
+        }
+        .sidebar-item {
+            border-radius: 6px;
+            transition: all 0.2s;
+        }
+        .sidebar-item:hover {
+            background-color: rgba(0,0,0,0.05);
+        }
+        .sidebar-item.active {
+            background-color: rgba(0, 122, 255, 0.1);
+            color: #007AFF;
+        }
+        .settings-card {
+            border-radius: 10px;
+            transition: all 0.2s;
+        }
+        .settings-card:hover {
+            box-shadow: 0 4px 12px rgba(0,0,0,0.08);
+        }
+        .toggle-pill {
+            width: 3rem;
+            height: 1.5rem;
+            background-color: #ddd;
+            border-radius: 9999px;
+            position: relative;
+            transition: background-color 0.2s;
+        }
+        .toggle-pill.active {
+            background-color: #4ADE80;
+        }
+        .toggle-pill:before {
+            content: "";
+            position: absolute;
+            height: 1.25rem;
+            width: 1.25rem;
+            left: 0.125rem;
+            top: 0.125rem;
+            border-radius: 50%;
+            background: white;
+            transition: transform 0.2s;
+        }
+        .toggle-pill.active:before {
+            transform: translateX(1.5rem);
+        }
+    </style>
+</head>
+<body>
+    <div class="mac-app">
+        <div class="mac-title-bar">
+            <div class="mac-buttons">
+                <div class="mac-button mac-close"></div>
+                <div class="mac-button mac-minimize"></div>
+                <div class="mac-button mac-maximize"></div>
+            </div>
+        </div>
+        
+        <div class="flex h-full">
+            <!-- Sidebar -->
+            <div class="w-64 bg-white border-r border-gray-200 p-4">
+                <div class="flex items-center mb-8">
+                    <div class="w-10 h-10 rounded-full bg-blue-500 flex items-center justify-center text-white">
+                        <i class="fas fa-user"></i>
+                    </div>
+                    <div class="ml-3">
+                        <h2 class="font-semibold">Alex Smith</h2>
+                        <p class="text-xs text-gray-500">Marketing Intern</p>
+                    </div>
+                </div>
+                
+                <nav>
+                    <div class="text-xs uppercase text-gray-500 font-semibold mb-2">Main Features</div>
+                    <ul>
+                        <li class="mb-1">
+                            <a href="dashboard.html" class="sidebar-item flex items-center p-2">
+                                <i class="fas fa-home w-6"></i>
+                                <span>Dashboard</span>
+                            </a>
+                        </li>
+                        <li class="mb-1">
+                            <a href="questions.html" class="sidebar-item flex items-center p-2">
+                                <i class="fas fa-question-circle w-6"></i>
+                                <span>Questions & Answers</span>
+                            </a>
+                        </li>
+                        <li class="mb-1">
+                            <a href="dictionary.html" class="sidebar-item flex items-center p-2">
+                                <i class="fas fa-book w-6"></i>
+                                <span>Company Dictionary</span>
+                            </a>
+                        </li>
+                        <li class="mb-1">
+                            <a href="anonymous_questions.html" class="sidebar-item flex items-center p-2">
+                                <i class="fas fa-mask w-6"></i>
+                                <span>Anonymous Questions</span>
+                            </a>
+                        </li>
+                        <li class="mb-1">
+                            <a href="status_tracker.html" class="sidebar-item flex items-center p-2">
+                                <i class="fas fa-chart-line w-6"></i>
+                                <span>Status Tracker</span>
+                            </a>
+                        </li>
+                        <li class="mb-1">
+                            <a href="timer.html" class="sidebar-item flex items-center p-2">
+                                <i class="fas fa-clock w-6"></i>
+                                <span>Timer</span>
+                            </a>
+                        </li>
+                        <li class="mb-1">
+                            <a href="knowledge_base.html" class="sidebar-item flex items-center p-2">
+                                <i class="fas fa-database w-6"></i>
+                                <span>Knowledge Base</span>
+                            </a>
+                        </li>
+                    </ul>
+                    
+                    <div class="text-xs uppercase text-gray-500 font-semibold mt-6 mb-2">Others</div>
+                    <ul>
+                        <li class="mb-1">
+                            <a href="settings.html" class="sidebar-item active flex items-center p-2">
+                                <i class="fas fa-cog w-6"></i>
+                                <span>Settings</span>
+                            </a>
+                        </li>
+                        <li class="mb-1">
+                            <a href="index.html" class="sidebar-item flex items-center p-2">
+                                <i class="fas fa-sign-out-alt w-6"></i>
+                                <span>Log Out</span>
+                            </a>
+                        </li>
+                    </ul>
+                </nav>
+            </div>
+            
+            <!-- Main Content Area -->
+            <div class="flex-1 p-6 overflow-y-auto">
+                <div class="flex justify-between items-center mb-6">
+                    <h1 class="text-2xl font-bold">Settings</h1>
+                </div>
+                
+                <!-- Personal Information -->
+                <div class="bg-white rounded-lg shadow-sm p-6 mb-6 settings-card">
+                    <h2 class="text-lg font-semibold mb-4">Personal Information</h2>
+                    <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
+                        <div>
+                            <label class="block text-sm font-medium text-gray-700 mb-1">Name</label>
+                            <input type="text" value="Alex Smith" class="w-full px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-transparent">
+                        </div>
+                        <div>
+                            <label class="block text-sm font-medium text-gray-700 mb-1">Employee ID</label>
+                            <input type="text" value="MKT20230615" class="w-full px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-transparent">
+                        </div>
+                        <div>
+                            <label class="block text-sm font-medium text-gray-700 mb-1">Department</label>
+                            <input type="text" value="Marketing" class="w-full px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-transparent">
+                        </div>
+                        <div>
+                            <label class="block text-sm font-medium text-gray-700 mb-1">Position</label>
+                            <input type="text" value="Marketing Intern" class="w-full px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-transparent">
+                        </div>
+                        <div>
+                            <label class="block text-sm font-medium text-gray-700 mb-1">Email</label>
+                            <input type="email" value="alex.smith@company.com" class="w-full px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-transparent">
+                        </div>
+                        <div>
+                            <label class="block text-sm font-medium text-gray-700 mb-1">Phone</label>
+                            <input type="text" value="+1 (555) 123-4567" class="w-full px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-transparent">
+                        </div>
+                    </div>
+                    <div class="flex justify-end mt-4">
+                        <button class="bg-blue-500 text-white px-4 py-2 rounded-lg hover:bg-blue-600 transition">
+                            Save Changes
+                        </button>
+                    </div>
+                </div>
+                
+                <!-- Notification Settings -->
+                <div class="bg-white rounded-lg shadow-sm p-6 mb-6 settings-card">
+                    <h2 class="text-lg font-semibold mb-4">Notification Settings</h2>
+                    <div class="space-y-4">
+                        <div class="flex justify-between items-center">
+                            <div>
+                                <h3 class="font-medium">Mentor responses</h3>
+                                <p class="text-sm text-gray-500">Receive notifications when a mentor responds to your questions</p>
+                            </div>
+                            <div class="toggle-pill active" role="switch" aria-checked="true" tabindex="0"></div>
+                        </div>
+                        <div class="flex justify-between items-center">
+                            <div>
+                                <h3 class="font-medium">Reminder for self-help timer</h3>
+                                <p class="text-sm text-gray-500">Notify when your self-help timer is about to expire</p>
+                            </div>
+                            <div class="toggle-pill active" role="switch" aria-checked="true" tabindex="0"></div>
+                        </div>
+                        <div class="flex justify-between items-center">
+                            <div>
+                                <h3 class="font-medium">New content in Knowledge Base</h3>
+                                <p class="text-sm text-gray-500">Notify when new content is added to the Knowledge Base</p>
+                            </div>
+                            <div class="toggle-pill" role="switch" aria-checked="false" tabindex="0"></div>
+                        </div>
+                        <div class="flex justify-between items-center">
+                            <div>
+                                <h3 class="font-medium">Email notifications</h3>
+                                <p class="text-sm text-gray-500">Receive important notifications via email</p>
+                            </div>
+                            <div class="toggle-pill active" role="switch" aria-checked="true" tabindex="0"></div>
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- Privacy Settings -->
+                <div class="bg-white rounded-lg shadow-sm p-6 mb-6 settings-card">
+                    <h2 class="text-lg font-semibold mb-4">Privacy Settings</h2>
+                    <div class="space-y-4">
+                        <div class="flex justify-between items-center">
+                            <div>
+                                <h3 class="font-medium">Show online status</h3>
+                                <p class="text-sm text-gray-500">Allow others to see when you are online</p>
+                            </div>
+                            <div class="toggle-pill active" role="switch" aria-checked="true" tabindex="0"></div>
+                        </div>
+                        <div class="flex justify-between items-center">
+                            <div>
+                                <h3 class="font-medium">Share my questions with the team</h3>
+                                <p class="text-sm text-gray-500">Allow your questions to be visible to your team members</p>
+                            </div>
+                            <div class="toggle-pill" role="switch" aria-checked="false" tabindex="0"></div>
+                        </div>
+                        <div class="flex justify-between items-center">
+                            <div>
+                                <h3 class="font-medium">Anonymous data collection</h3>
+                                <p class="text-sm text-gray-500">Allow collection of anonymous usage data to improve the app</p>
+                            </div>
+                            <div class="toggle-pill active" role="switch" aria-checked="true" tabindex="0"></div>
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- Application Settings -->
+                <div class="bg-white rounded-lg shadow-sm p-6 mb-6 settings-card">
+                    <h2 class="text-lg font-semibold mb-4">Application Settings</h2>
+                    <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
+                        <div>
+                            <label class="block text-sm font-medium text-gray-700 mb-1">Language</label>
+                            <select class="w-full px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-transparent">
+                                <option selected>English</option>
+                                <option>Chinese (Simplified)</option>
+                                <option>Spanish</option>
+                                <option>French</option>
+                            </select>
+                        </div>
+                        <div>
+                            <label class="block text-sm font-medium text-gray-700 mb-1">Time zone</label>
+                            <select class="w-full px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-transparent">
+                                <option selected>(GMT-07:00) Pacific Time</option>
+                                <option>(GMT-05:00) Eastern Time</option>
+                                <option>(GMT+00:00) UTC</option>
+                                <option>(GMT+08:00) China Standard Time</option>
+                                <option>(GMT+09:00) Japan Standard Time</option>
+                            </select>
+                        </div>
+                        <div>
+                            <label class="block text-sm font-medium text-gray-700 mb-1">Default self-help timer</label>
+                            <select class="w-full px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-transparent">
+                                <option>15 minutes</option>
+                                <option selected>30 minutes</option>
+                                <option>45 minutes</option>
+                                <option>60 minutes</option>
+                            </select>
+                        </div>
+                        <div>
+                            <label class="block text-sm font-medium text-gray-700 mb-1">Theme</label>
+                            <select class="w-full px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-transparent">
+                                <option selected>Light</option>
+                                <option>Dark</option>
+                                <option>System</option>
+                            </select>
+                        </div>
+                    </div>
+                    
+                    <div class="mt-4">
+                        <label class="block text-sm font-medium text-gray-700 mb-1">Assigned Mentor</label>
+                        <div class="flex items-center p-3 border border-gray-300 rounded-md">
+                            <div class="w-10 h-10 rounded-full bg-gray-200 flex items-center justify-center mr-3">
+                                <i class="fas fa-user text-gray-500"></i>
+                            </div>
+                            <div>
+                                <h3 class="font-medium">Sarah Johnson</h3>
+                                <p class="text-sm text-gray-500">Senior Marketing Manager</p>
+                            </div>
+                            <div class="ml-auto">
+                                <span class="inline-flex items-center px-2.5 py-0.5 rounded-full text-xs font-medium bg-green-100 text-green-800">
+                                    <span class="w-2 h-2 mr-1 bg-green-500 rounded-full"></span>
+                                    Available
+                                </span>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <div class="flex justify-end mt-4">
+                        <button class="bg-blue-500 text-white px-4 py-2 rounded-lg hover:bg-blue-600 transition">
+                            Save Changes
+                        </button>
+                    </div>
+                </div>
+                
+                <!-- Account Management -->
+                <div class="bg-white rounded-lg shadow-sm p-6 mb-6 settings-card">
+                    <h2 class="text-lg font-semibold mb-4">Account Management</h2>
+                    <div class="space-y-4">
+                        <div>
+                            <button class="text-blue-500 hover:text-blue-700 transition flex items-center">
+                                <i class="fas fa-lock mr-2"></i> Change Password
+                            </button>
+                        </div>
+                        <div>
+                            <button class="text-blue-500 hover:text-blue-700 transition flex items-center">
+                                <i class="fas fa-download mr-2"></i> Export My Data
+                            </button>
+                        </div>
+                        <div>
+                            <button class="text-red-500 hover:text-red-700 transition flex items-center">
+                                <i class="fas fa-trash-alt mr-2"></i> Delete Account
+                            </button>
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- App Information -->
+                <div class="bg-white rounded-lg shadow-sm p-6 mb-6 settings-card">
+                    <h2 class="text-lg font-semibold mb-4">About</h2>
+                    <div class="text-sm text-gray-600">
+                        <p class="mb-2">Intern Workplace Assistant</p>
+                        <p class="mb-2">Version: 1.0.5</p>
+                        <p class="mb-4">© 2023 Company Name. All rights reserved.</p>
+                        <div class="flex gap-4">
+                            <a href="#" class="text-blue-500 hover:text-blue-700 transition">Privacy Policy</a>
+                            <a href="#" class="text-blue-500 hover:text-blue-700 transition">Terms of Service</a>
+                            <a href="#" class="text-blue-500 hover:text-blue-700 transition">Help Center</a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    
+    <script>
+        // Toggle switch functionality
+        document.querySelectorAll('.toggle-pill').forEach(toggle => {
+            toggle.addEventListener('click', function() {
+                this.classList.toggle('active');
+                this.setAttribute('aria-checked', this.classList.contains('active'));
+            });
+            
+            toggle.addEventListener('keydown', function(e) {
+                if (e.key === ' ' || e.key === 'Enter') {
+                    e.preventDefault();
+                    this.click();
+                }
+            });
+        });
+    </script>
+</body>
+</html>

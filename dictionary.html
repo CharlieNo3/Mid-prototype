@@ -1,0 +1,384 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Company Dictionary - Intern Workplace Assistant</title>
+    <!-- Tailwind CSS CDN -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <!-- Font Awesome CDN -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+            background-color: #f5f5f7;
+            color: #333;
+        }
+        .mac-app {
+            border-radius: 10px;
+            box-shadow: 0 4px 20px rgba(0,0,0,0.08);
+            background-color: rgba(255, 255, 255, 0.95);
+            width: 100%;
+            height: 100vh;
+            overflow: hidden;
+        }
+        .mac-title-bar {
+            background: linear-gradient(90deg, #f6f6f6, #f1f1f1);
+            height: 28px;
+            border-bottom: 1px solid #e1e1e1;
+            display: flex;
+            align-items: center;
+            padding: 0 12px;
+        }
+        .mac-buttons {
+            display: flex;
+            gap: 8px;
+        }
+        .mac-button {
+            width: 12px;
+            height: 12px;
+            border-radius: 50%;
+        }
+        .mac-close {
+            background-color: #ff5f57;
+            border: 1px solid rgba(0,0,0,0.1);
+        }
+        .mac-minimize {
+            background-color: #ffbd2e;
+            border: 1px solid rgba(0,0,0,0.1);
+        }
+        .mac-maximize {
+            background-color: #28c940;
+            border: 1px solid rgba(0,0,0,0.1);
+        }
+        .sidebar-item {
+            border-radius: 6px;
+            transition: all 0.2s;
+        }
+        .sidebar-item:hover {
+            background-color: rgba(0,0,0,0.05);
+        }
+        .sidebar-item.active {
+            background-color: rgba(0, 122, 255, 0.1);
+            color: #007AFF;
+        }
+        .dictionary-card {
+            border-radius: 10px;
+            transition: all 0.2s;
+            cursor: pointer;
+        }
+        .dictionary-card:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 4px 12px rgba(0,0,0,0.08);
+        }
+        .letter-index {
+            width: 24px;
+            height: 24px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            border-radius: 4px;
+            cursor: pointer;
+            transition: all 0.2s;
+        }
+        .letter-index:hover, .letter-index.active {
+            background-color: #007AFF;
+            color: white;
+        }
+        .badge-new {
+            position: absolute;
+            top: -6px;
+            right: -6px;
+            background-color: #FF3B30;
+            color: white;
+            font-size: 9px;
+            font-weight: bold;
+            padding: 2px 5px;
+            border-radius: 10px;
+        }
+    </style>
+</head>
+<body>
+    <div class="mac-app">
+        <div class="mac-title-bar">
+            <div class="mac-buttons">
+                <div class="mac-button mac-close"></div>
+                <div class="mac-button mac-minimize"></div>
+                <div class="mac-button mac-maximize"></div>
+            </div>
+        </div>
+        
+        <div class="flex h-full">
+            <!-- 侧边栏 -->
+            <div class="w-64 bg-white border-r border-gray-200 p-4">
+                <div class="flex items-center mb-8">
+                    <div class="w-10 h-10 rounded-full bg-blue-500 flex items-center justify-center text-white">
+                        <i class="fas fa-user"></i>
+                    </div>
+                    <div class="ml-3">
+                        <h2 class="font-semibold">Alex Smith</h2>
+                        <p class="text-xs text-gray-500">Marketing Intern</p>
+                    </div>
+                </div>
+                
+                <nav>
+                    <div class="text-xs uppercase text-gray-500 font-semibold mb-2">Main Features</div>
+                    <ul>
+                        <li class="mb-1">
+                            <a href="dashboard.html" class="sidebar-item flex items-center p-2">
+                                <i class="fas fa-home w-6"></i>
+                                <span>Dashboard</span>
+                            </a>
+                        </li>
+                        <li class="mb-1">
+                            <a href="questions.html" class="sidebar-item flex items-center p-2">
+                                <i class="fas fa-question-circle w-6"></i>
+                                <span>Questions & Answers</span>
+                            </a>
+                        </li>
+                        <li class="mb-1">
+                            <a href="dictionary.html" class="sidebar-item active flex items-center p-2">
+                                <i class="fas fa-book w-6"></i>
+                                <span>Company Dictionary</span>
+                            </a>
+                        </li>
+                        <li class="mb-1">
+                            <a href="anonymous_questions.html" class="sidebar-item flex items-center p-2">
+                                <i class="fas fa-mask w-6"></i>
+                                <span>Anonymous Questions</span>
+                            </a>
+                        </li>
+                        <li class="mb-1">
+                            <a href="status_tracker.html" class="sidebar-item flex items-center p-2">
+                                <i class="fas fa-chart-line w-6"></i>
+                                <span>Status Tracker</span>
+                            </a>
+                        </li>
+                        <li class="mb-1">
+                            <a href="timer.html" class="sidebar-item flex items-center p-2">
+                                <i class="fas fa-clock w-6"></i>
+                                <span>Timer</span>
+                            </a>
+                        </li>
+                        <li class="mb-1">
+                            <a href="knowledge_base.html" class="sidebar-item flex items-center p-2">
+                                <i class="fas fa-database w-6"></i>
+                                <span>Knowledge Base</span>
+                            </a>
+                        </li>
+                    </ul>
+                    
+                    <div class="text-xs uppercase text-gray-500 font-semibold mt-6 mb-2">Others</div>
+                    <ul>
+                        <li class="mb-1">
+                            <a href="settings.html" class="sidebar-item flex items-center p-2">
+                                <i class="fas fa-cog w-6"></i>
+                                <span>Settings</span>
+                            </a>
+                        </li>
+                        <li class="mb-1">
+                            <a href="index.html" class="sidebar-item flex items-center p-2">
+                                <i class="fas fa-sign-out-alt w-6"></i>
+                                <span>Log Out</span>
+                            </a>
+                        </li>
+                    </ul>
+                </nav>
+            </div>
+            
+            <!-- 主内容区 -->
+            <div class="flex-1 p-6 overflow-y-auto">
+                <div class="flex justify-between items-center mb-6">
+                    <h1 class="text-2xl font-bold">Company Dictionary</h1>
+                    <div class="flex gap-2">
+                        <button class="text-sm bg-gray-100 text-gray-700 px-3 py-1.5 rounded-md hover:bg-gray-200 transition flex items-center">
+                            <i class="fas fa-filter mr-1"></i> 筛选
+                        </button>
+                        <button class="text-sm bg-blue-500 text-white px-3 py-1.5 rounded-md hover:bg-blue-600 transition flex items-center">
+                            <i class="fas fa-plus mr-1"></i> 添加词条
+                        </button>
+                    </div>
+                </div>
+                
+                <!-- 搜索框 -->
+                <div class="relative mb-6">
+                    <div class="absolute inset-y-0 left-0 flex items-center pl-3 pointer-events-none">
+                        <i class="fas fa-search text-gray-400"></i>
+                    </div>
+                    <input type="text" class="block w-full p-3 pl-10 text-sm border border-gray-300 rounded-lg bg-white focus:ring-2 focus:ring-blue-500 focus:border-blue-500" placeholder="搜索词汇、缩略词或定义...">
+                </div>
+                
+                <!-- 字母索引 -->
+                <div class="flex flex-wrap gap-1 mb-6 bg-white rounded-lg p-2 shadow-sm">
+                    <div class="letter-index active">A</div>
+                    <div class="letter-index">B</div>
+                    <div class="letter-index">C</div>
+                    <div class="letter-index">D</div>
+                    <div class="letter-index">E</div>
+                    <div class="letter-index">F</div>
+                    <div class="letter-index">G</div>
+                    <div class="letter-index">H</div>
+                    <div class="letter-index">I</div>
+                    <div class="letter-index">J</div>
+                    <div class="letter-index">K</div>
+                    <div class="letter-index">L</div>
+                    <div class="letter-index">M</div>
+                    <div class="letter-index">N</div>
+                    <div class="letter-index">O</div>
+                    <div class="letter-index">P</div>
+                    <div class="letter-index">Q</div>
+                    <div class="letter-index">R</div>
+                    <div class="letter-index">S</div>
+                    <div class="letter-index">T</div>
+                    <div class="letter-index">U</div>
+                    <div class="letter-index">V</div>
+                    <div class="letter-index">W</div>
+                    <div class="letter-index">X</div>
+                    <div class="letter-index">Y</div>
+                    <div class="letter-index">Z</div>
+                </div>
+                
+                <!-- 分类标签 -->
+                <div class="flex gap-2 mb-6 overflow-x-auto pb-2">
+                    <button class="whitespace-nowrap bg-blue-100 text-blue-800 text-xs font-medium px-3 py-1.5 rounded-full">
+                        All Categories
+                    </button>
+                    <button class="whitespace-nowrap bg-gray-100 text-gray-800 text-xs font-medium px-3 py-1.5 rounded-full">
+                        Commonly Used
+                    </button>
+                    <button class="whitespace-nowrap bg-gray-100 text-gray-800 text-xs font-medium px-3 py-1.5 rounded-full">
+                        Marketing Terms
+                    </button>
+                    <button class="whitespace-nowrap bg-gray-100 text-gray-800 text-xs font-medium px-3 py-1.5 rounded-full">
+                        Technical Terms
+                    </button>
+                    <button class="whitespace-nowrap bg-gray-100 text-gray-800 text-xs font-medium px-3 py-1.5 rounded-full">
+                        Company Abbreviations
+                    </button>
+                    <button class="whitespace-nowrap bg-gray-100 text-gray-800 text-xs font-medium px-3 py-1.5 rounded-full">
+                        Department Specific
+                    </button>
+                    <button class="whitespace-nowrap bg-gray-100 text-gray-800 text-xs font-medium px-3 py-1.5 rounded-full">
+                        Projects
+                    </button>
+                </div>
+                
+                <!-- A词条列表 -->
+                <div class="mb-8">
+                    <h2 class="text-xl font-bold mb-4 text-gray-700">A</h2>
+                    
+                    <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
+                        <!-- 词条卡片 -->
+                        <div class="dictionary-card bg-white rounded-lg p-4 border border-gray-200 shadow-sm relative">
+                            <div class="badge-new">New</div>
+                            <div class="flex mb-2">
+                                <div class="text-sm bg-gray-100 text-gray-600 px-2 py-0.5 rounded">Marketing Terms</div>
+                            </div>
+                            <h3 class="font-bold text-lg mb-1">A/B Testing</h3>
+                            <div class="text-sm text-gray-500 mb-2">A method of comparing two versions of a webpage, email, or other marketing asset to determine which one performs better.</div>
+                            <p class="text-sm text-gray-700">In A/B testing, users are randomly shown one of two variants, and statistical analysis is used to determine which variation performs better for a given conversion goal.</p>
+                            <div class="mt-3 pt-3 border-t border-gray-100 flex justify-between items-center">
+                                <div class="text-xs text-gray-500">Last updated by: Marketing Team</div>
+                                <button class="text-blue-500 hover:text-blue-700">
+                                    <i class="fas fa-bookmark"></i>
+                                </button>
+                            </div>
+                        </div>
+                        
+                        <div class="dictionary-card bg-white rounded-lg p-4 border border-gray-200 shadow-sm">
+                            <div class="flex mb-2">
+                                <div class="text-sm bg-gray-100 text-gray-600 px-2 py-0.5 rounded">Technical Terms</div>
+                            </div>
+                            <h3 class="font-bold text-lg mb-1">API (Application Programming Interface)</h3>
+                            <div class="text-sm text-gray-500 mb-2">A set of protocols, routines, and tools for building software applications that specify how software components should interact.</div>
+                            <p class="text-sm text-gray-700">APIs are used when programming GUI components, as well as allowing communication between different software systems.</p>
+                            <div class="mt-3 pt-3 border-t border-gray-100 flex justify-between items-center">
+                                <div class="text-xs text-gray-500">Last updated by: IT Department</div>
+                                <button class="text-gray-400 hover:text-blue-500">
+                                    <i class="far fa-bookmark"></i>
+                                </button>
+                            </div>
+                        </div>
+                        
+                        <div class="dictionary-card bg-white rounded-lg p-4 border border-gray-200 shadow-sm relative">
+                            <div class="badge-new">New</div>
+                            <div class="flex mb-2">
+                                <div class="text-sm bg-gray-100 text-gray-600 px-2 py-0.5 rounded">Marketing Terms</div>
+                            </div>
+                            <h3 class="font-bold text-lg mb-1">ARPU</h3>
+                            <div class="text-sm text-gray-500 mb-2">Average Revenue Per User</div>
+                            <p class="text-sm text-gray-700">Average revenue per user, calculated by dividing the total revenue from a single user or customer by the number of users or customers.</p>
+                            <div class="mt-3 pt-3 border-t border-gray-100 flex justify-between items-center">
+                                <div class="text-xs text-gray-500">Last updated by: Marketing Team</div>
+                                <button class="text-gray-400 hover:text-blue-500">
+                                    <i class="far fa-bookmark"></i>
+                                </button>
+                            </div>
+                        </div>
+                        
+                        <div class="dictionary-card bg-white rounded-lg p-4 border border-gray-200 shadow-sm">
+                            <div class="flex mb-2">
+                                <div class="text-sm bg-gray-100 text-gray-600 px-2 py-0.5 rounded">Technical Terms</div>
+                            </div>
+                            <h3 class="font-bold text-lg mb-1">ARR</h3>
+                            <div class="text-sm text-gray-500 mb-2">Annual Recurring Revenue</div>
+                            <p class="text-sm text-gray-700">Annual recurring revenue, calculated by dividing the total annual revenue from subscription or contract business.</p>
+                            <div class="mt-3 pt-3 border-t border-gray-100 flex justify-between items-center">
+                                <div class="text-xs text-gray-500">Last updated by: Marketing Team</div>
+                                <button class="text-gray-400 hover:text-blue-500">
+                                    <i class="far fa-bookmark"></i>
+                                </button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- 新发现的词汇 -->
+                <div class="bg-yellow-50 border border-yellow-200 rounded-lg p-4 mb-6">
+                    <div class="flex justify-between items-center mb-3">
+                        <h3 class="font-semibold text-yellow-800">Newly Discovered Terms</h3>
+                        <span class="text-xs text-yellow-600 bg-yellow-100 px-2 py-0.5 rounded-full">3 new terms</span>
+                    </div>
+                    <p class="text-sm text-yellow-700 mb-3">We found these terms in your recent emails and meeting notes. Do you know them?</p>
+                    
+                    <div class="space-y-3">
+                        <div class="bg-white rounded-md p-3 shadow-sm">
+                            <div class="flex justify-between items-center">
+                                <div>
+                                    <h4 class="font-medium">CAC</h4>
+                                    <p class="text-xs text-gray-500">Mentioned in Marketing Meeting</p>
+                                </div>
+                                <div class="flex gap-2">
+                                    <button class="text-xs bg-green-500 text-white px-2 py-1 rounded hover:bg-green-600 transition">
+                                        I know
+                                    </button>
+                                    <button class="text-xs bg-blue-500 text-white px-2 py-1 rounded hover:bg-blue-600 transition">
+                                        Add Definition
+                                    </button>
+                                </div>
+                            </div>
+                        </div>
+                        
+                        <div class="bg-white rounded-md p-3 shadow-sm">
+                            <div class="flex justify-between items-center">
+                                <div>
+                                    <h4 class="font-medium">NPS</h4>
+                                    <p class="text-xs text-gray-500">Mentioned in Product Email</p>
+                                </div>
+                                <div class="flex gap-2">
+                                    <button class="text-xs bg-green-500 text-white px-2 py-1 rounded hover:bg-green-600 transition">
+                                        I know
+                                    </button>
+                                    <button class="text-xs bg-blue-500 text-white px-2 py-1 rounded hover:bg-blue-600 transition">
+                                        Add Definition
+                                    </button>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</body>
+</html>

@@ -1,0 +1,274 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Dashboard - Intern Workplace Assistant</title>
+    <!-- Tailwind CSS CDN -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <!-- Font Awesome CDN -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+            background-color: #f5f5f7;
+            color: #333;
+        }
+        .mac-app {
+            border-radius: 10px;
+            box-shadow: 0 4px 20px rgba(0,0,0,0.08);
+            background-color: rgba(255, 255, 255, 0.95);
+            width: 100%;
+            height: 100vh;
+            overflow: hidden;
+        }
+        .mac-title-bar {
+            background: linear-gradient(90deg, #f6f6f6, #f1f1f1);
+            height: 28px;
+            border-bottom: 1px solid #e1e1e1;
+            display: flex;
+            align-items: center;
+            padding: 0 12px;
+        }
+        .mac-buttons {
+            display: flex;
+            gap: 8px;
+        }
+        .mac-button {
+            width: 12px;
+            height: 12px;
+            border-radius: 50%;
+        }
+        .mac-close {
+            background-color: #ff5f57;
+            border: 1px solid rgba(0,0,0,0.1);
+        }
+        .mac-minimize {
+            background-color: #ffbd2e;
+            border: 1px solid rgba(0,0,0,0.1);
+        }
+        .mac-maximize {
+            background-color: #28c940;
+            border: 1px solid rgba(0,0,0,0.1);
+        }
+        .sidebar-item {
+            border-radius: 6px;
+            transition: all 0.2s;
+        }
+        .sidebar-item:hover {
+            background-color: rgba(0,0,0,0.05);
+        }
+        .sidebar-item.active {
+            background-color: rgba(0, 122, 255, 0.1);
+            color: #007AFF;
+        }
+        .card {
+            border-radius: 10px;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.05);
+            transition: transform 0.2s;
+        }
+        .card:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 4px 12px rgba(0,0,0,0.1);
+        }
+    </style>
+</head>
+<body>
+    <div class="mac-app">
+        <div class="mac-title-bar">
+            <div class="mac-buttons">
+                <div class="mac-button mac-close"></div>
+                <div class="mac-button mac-minimize"></div>
+                <div class="mac-button mac-maximize"></div>
+            </div>
+        </div>
+        
+        <div class="flex h-full">
+            <!-- Sidebar -->
+            <div class="w-64 bg-white border-r border-gray-200 p-4">
+                <div class="flex items-center mb-8">
+                    <div class="w-10 h-10 rounded-full bg-blue-500 flex items-center justify-center text-white">
+                        <i class="fas fa-user"></i>
+                    </div>
+                    <div class="ml-3">
+                        <h2 class="font-semibold">Alex Smith</h2>
+                        <p class="text-xs text-gray-500">Marketing Intern</p>
+                    </div>
+                </div>
+                
+                <nav>
+                    <div class="text-xs uppercase text-gray-500 font-semibold mb-2">Main Features</div>
+                    <ul>
+                        <li class="mb-1">
+                            <a href="dashboard.html" class="sidebar-item active flex items-center p-2">
+                                <i class="fas fa-home w-6"></i>
+                                <span>Dashboard</span>
+                            </a>
+                        </li>
+                        <li class="mb-1">
+                            <a href="questions.html" class="sidebar-item flex items-center p-2">
+                                <i class="fas fa-question-circle w-6"></i>
+                                <span>Questions & Answers</span>
+                            </a>
+                        </li>
+                        <li class="mb-1">
+                            <a href="dictionary.html" class="sidebar-item flex items-center p-2">
+                                <i class="fas fa-book w-6"></i>
+                                <span>Company Dictionary</span>
+                            </a>
+                        </li>
+                        <li class="mb-1">
+                            <a href="anonymous_questions.html" class="sidebar-item flex items-center p-2">
+                                <i class="fas fa-mask w-6"></i>
+                                <span>Anonymous Questions</span>
+                            </a>
+                        </li>
+                        <li class="mb-1">
+                            <a href="status_tracker.html" class="sidebar-item flex items-center p-2">
+                                <i class="fas fa-chart-line w-6"></i>
+                                <span>Status Tracker</span>
+                            </a>
+                        </li>
+                        <li class="mb-1">
+                            <a href="timer.html" class="sidebar-item flex items-center p-2">
+                                <i class="fas fa-clock w-6"></i>
+                                <span>Timer</span>
+                            </a>
+                        </li>
+                        <li class="mb-1">
+                            <a href="knowledge_base.html" class="sidebar-item flex items-center p-2">
+                                <i class="fas fa-database w-6"></i>
+                                <span>Knowledge Base</span>
+                            </a>
+                        </li>
+                    </ul>
+                    
+                    <div class="text-xs uppercase text-gray-500 font-semibold mt-6 mb-2">Others</div>
+                    <ul>
+                        <li class="mb-1">
+                            <a href="settings.html" class="sidebar-item flex items-center p-2">
+                                <i class="fas fa-cog w-6"></i>
+                                <span>Settings</span>
+                            </a>
+                        </li>
+                        <li class="mb-1">
+                            <a href="index.html" class="sidebar-item flex items-center p-2">
+                                <i class="fas fa-sign-out-alt w-6"></i>
+                                <span>Log Out</span>
+                            </a>
+                        </li>
+                    </ul>
+                </nav>
+            </div>
+            
+            <!-- Main Content Area -->
+            <div class="flex-1 p-6 overflow-y-auto">
+                <div class="flex justify-between items-center mb-6">
+                    <h1 class="text-2xl font-bold">Welcome back, Alex Smith</h1>
+                    <div class="text-sm bg-blue-100 text-blue-800 px-3 py-1 rounded-full">
+                        <i class="fas fa-circle text-green-500 text-xs mr-1"></i> Mentor Online
+                    </div>
+                </div>
+                
+                <!-- Status Selector -->
+                <div class="bg-white rounded-lg shadow p-4 mb-6">
+                    <h2 class="text-lg font-semibold mb-3">How are you feeling today?</h2>
+                    <div class="flex gap-3">
+                        <button class="flex-1 py-3 rounded-lg border-2 border-green-500 text-green-600 bg-green-50 hover:bg-green-100 transition">
+                            <i class="fas fa-smile mb-1 text-xl"></i>
+                            <div>Feeling Good</div>
+                        </button>
+                        <button class="flex-1 py-3 rounded-lg border-2 border-yellow-400 text-yellow-600 bg-yellow-50 hover:bg-yellow-100 transition">
+                            <i class="fas fa-meh mb-1 text-xl"></i>
+                            <div>Struggling</div>
+                        </button>
+                        <button class="flex-1 py-3 rounded-lg border-2 border-red-400 text-red-600 bg-red-50 hover:bg-red-100 transition">
+                            <i class="fas fa-question-circle mb-1 text-xl"></i>
+                            <div>Need Help</div>
+                        </button>
+                    </div>
+                </div>
+                
+                <div class="grid grid-cols-2 gap-6 mb-6">
+                    <!-- Pending Questions -->
+                    <div class="card bg-white p-4 rounded-lg">
+                        <div class="flex justify-between items-center mb-4">
+                            <h2 class="font-semibold">Questions to Answer</h2>
+                            <span class="bg-red-100 text-red-600 text-xs px-2 py-1 rounded-full">3 pending</span>
+                        </div>
+                        <ul class="space-y-3">
+                            <li class="flex items-center p-2 border-b border-gray-100">
+                                <div class="w-2 h-2 bg-red-500 rounded-full mr-2"></div>
+                                <div class="text-sm">Understanding company's marketing strategy steps</div>
+                                <div class="ml-auto text-xs text-gray-400">Due today</div>
+                            </li>
+                            <li class="flex items-center p-2 border-b border-gray-100">
+                                <div class="w-2 h-2 bg-red-500 rounded-full mr-2"></div>
+                                <div class="text-sm">How to conduct customer research and data analysis</div>
+                                <div class="ml-auto text-xs text-gray-400">Due today</div>
+                            </li>
+                            <li class="flex items-center p-2">
+                                <div class="w-2 h-2 bg-yellow-500 rounded-full mr-2"></div>
+                                <div class="text-sm">Familiarize with marketing channels and evaluation methods</div>
+                                <div class="ml-auto text-xs text-gray-400">Due tomorrow</div>
+                            </li>
+                        </ul>
+                        <a href="questions.html" class="mt-4 w-full text-center text-blue-600 text-sm py-2 hover:bg-blue-50 rounded-md transition block">
+                            View All <i class="fas fa-arrow-right ml-1"></i>
+                        </a>
+                    </div>
+                    
+                    <!-- Latest Terms -->
+                    <div class="card bg-white p-4 rounded-lg">
+                        <div class="flex justify-between items-center mb-4">
+                            <h2 class="font-semibold">Latest Company Terms</h2>
+                            <span class="bg-blue-100 text-blue-600 text-xs px-2 py-1 rounded-full">5 new terms</span>
+                        </div>
+                        <ul class="space-y-3">
+                            <li class="flex items-start p-2 border-b border-gray-100">
+                                <div class="text-sm font-medium w-16">CPA</div>
+                                <div class="text-sm text-gray-600">Cost Per Action</div>
+                            </li>
+                            <li class="flex items-start p-2 border-b border-gray-100">
+                                <div class="text-sm font-medium w-16">OKR</div>
+                                <div class="text-sm text-gray-600">Objectives and Key Results</div>
+                            </li>
+                            <li class="flex items-start p-2">
+                                <div class="text-sm font-medium w-16">ROAS</div>
+                                <div class="text-sm text-gray-600">Return on Ad Spend</div>
+                            </li>
+                        </ul>
+                        <a href="dictionary.html" class="mt-4 w-full text-center text-blue-600 text-sm py-2 hover:bg-blue-50 rounded-md transition block">
+                            View Dictionary <i class="fas fa-arrow-right ml-1"></i>
+                        </a>
+                    </div>
+                </div>
+                
+                <div class="grid grid-cols-3 gap-4">
+                    <!-- Quick Access Cards -->
+                    <div class="card bg-gradient-to-r from-blue-500 to-blue-600 p-4 text-white rounded-lg">
+                        <div class="text-3xl mb-2"><i class="fas fa-mask"></i></div>
+                        <h3 class="font-semibold mb-1">Anonymous Questions</h3>
+                        <p class="text-sm text-blue-100 mb-3">Ask your questions safely</p>
+                        <a href="anonymous_questions.html" class="bg-white text-blue-600 text-sm px-3 py-1 rounded-md hover:bg-blue-50 mt-auto inline-block">Ask a Question</a>
+                    </div>
+                    
+                    <div class="card bg-gradient-to-r from-purple-500 to-purple-600 p-4 text-white rounded-lg">
+                        <div class="text-3xl mb-2"><i class="fas fa-clock"></i></div>
+                        <h3 class="font-semibold mb-1">Problem-Solving Timer</h3>
+                        <p class="text-sm text-purple-100 mb-3">Track your problem-solving time</p>
+                        <a href="timer.html" class="bg-white text-purple-600 text-sm px-3 py-1 rounded-md hover:bg-purple-50 mt-auto inline-block">Start Timer</a>
+                    </div>
+                    
+                    <div class="card bg-gradient-to-r from-green-500 to-green-600 p-4 text-white rounded-lg">
+                        <div class="text-3xl mb-2"><i class="fas fa-database"></i></div>
+                        <h3 class="font-semibold mb-1">Knowledge Base</h3>
+                        <p class="text-sm text-green-100 mb-3">Explore common questions and answers</p>
+                        <a href="knowledge_base.html" class="bg-white text-green-600 text-sm px-3 py-1 rounded-md hover:bg-green-50 mt-auto inline-block">Browse Knowledge</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</body>
+</html>

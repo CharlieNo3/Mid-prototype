@@ -1,0 +1,389 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Knowledge Base - Intern Workplace Assistant</title>
+    <!-- Tailwind CSS CDN -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <!-- Font Awesome CDN -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+            background-color: #f5f5f7;
+            color: #333;
+        }
+        .mac-app {
+            border-radius: 10px;
+            box-shadow: 0 4px 20px rgba(0,0,0,0.08);
+            background-color: rgba(255, 255, 255, 0.95);
+            width: 100%;
+            height: 100vh;
+            overflow: hidden;
+        }
+        .mac-title-bar {
+            background: linear-gradient(90deg, #f6f6f6, #f1f1f1);
+            height: 28px;
+            border-bottom: 1px solid #e1e1e1;
+            display: flex;
+            align-items: center;
+            padding: 0 12px;
+        }
+        .mac-buttons {
+            display: flex;
+            gap: 8px;
+        }
+        .mac-button {
+            width: 12px;
+            height: 12px;
+            border-radius: 50%;
+        }
+        .mac-close {
+            background-color: #ff5f57;
+            border: 1px solid rgba(0,0,0,0.1);
+        }
+        .mac-minimize {
+            background-color: #ffbd2e;
+            border: 1px solid rgba(0,0,0,0.1);
+        }
+        .mac-maximize {
+            background-color: #28c940;
+            border: 1px solid rgba(0,0,0,0.1);
+        }
+        .sidebar-item {
+            border-radius: 6px;
+            transition: all 0.2s;
+        }
+        .sidebar-item:hover {
+            background-color: rgba(0,0,0,0.05);
+        }
+        .sidebar-item.active {
+            background-color: rgba(0, 122, 255, 0.1);
+            color: #007AFF;
+        }
+        .knowledge-card {
+            border-radius: 10px;
+            transition: all 0.2s;
+        }
+        .knowledge-card:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 4px 12px rgba(0,0,0,0.08);
+        }
+        .tab-active {
+            color: #007AFF;
+            border-bottom: 2px solid #007AFF;
+        }
+        .tag {
+            transition: all 0.2s;
+        }
+        .tag:hover {
+            transform: translateY(-1px);
+        }
+    </style>
+</head>
+<body>
+    <div class="mac-app">
+        <div class="mac-title-bar">
+            <div class="mac-buttons">
+                <div class="mac-button mac-close"></div>
+                <div class="mac-button mac-minimize"></div>
+                <div class="mac-button mac-maximize"></div>
+            </div>
+        </div>
+        
+        <div class="flex h-full">
+            <!-- 侧边栏 -->
+            <div class="w-64 bg-white border-r border-gray-200 p-4">
+                <div class="flex items-center mb-8">
+                    <div class="w-10 h-10 rounded-full bg-blue-500 flex items-center justify-center text-white">
+                        <i class="fas fa-user"></i>
+                    </div>
+                    <div class="ml-3">
+                        <h2 class="font-semibold">Alex Smith</h2>
+                        <p class="text-xs text-gray-500">Marketing Intern</p>
+                    </div>
+                </div>
+                
+                <nav>
+                    <div class="text-xs uppercase text-gray-500 font-semibold mb-2">Main Features</div>
+                    <ul>
+                        <li class="mb-1">
+                            <a href="dashboard.html" class="sidebar-item flex items-center p-2">
+                                <i class="fas fa-home w-6"></i>
+                                <span>Dashboard</span>
+                            </a>
+                        </li>
+                        <li class="mb-1">
+                            <a href="questions.html" class="sidebar-item flex items-center p-2">
+                                <i class="fas fa-question-circle w-6"></i>
+                                <span>Questions & Answers</span>
+                            </a>
+                        </li>
+                        <li class="mb-1">
+                            <a href="dictionary.html" class="sidebar-item flex items-center p-2">
+                                <i class="fas fa-book w-6"></i>
+                                <span>Company Dictionary</span>
+                            </a>
+                        </li>
+                        <li class="mb-1">
+                            <a href="anonymous_questions.html" class="sidebar-item flex items-center p-2">
+                                <i class="fas fa-mask w-6"></i>
+                                <span>Anonymous Questions</span>
+                            </a>
+                        </li>
+                        <li class="mb-1">
+                            <a href="status_tracker.html" class="sidebar-item flex items-center p-2">
+                                <i class="fas fa-chart-line w-6"></i>
+                                <span>Status Tracker</span>
+                            </a>
+                        </li>
+                        <li class="mb-1">
+                            <a href="timer.html" class="sidebar-item flex items-center p-2">
+                                <i class="fas fa-clock w-6"></i>
+                                <span>Timer</span>
+                            </a>
+                        </li>
+                        <li class="mb-1">
+                            <a href="knowledge_base.html" class="sidebar-item active flex items-center p-2">
+                                <i class="fas fa-database w-6"></i>
+                                <span>Knowledge Base</span>
+                            </a>
+                        </li>
+                    </ul>
+                    
+                    <div class="text-xs uppercase text-gray-500 font-semibold mt-6 mb-2">Others</div>
+                    <ul>
+                        <li class="mb-1">
+                            <a href="settings.html" class="sidebar-item flex items-center p-2">
+                                <i class="fas fa-cog w-6"></i>
+                                <span>Settings</span>
+                            </a>
+                        </li>
+                        <li class="mb-1">
+                            <a href="index.html" class="sidebar-item flex items-center p-2">
+                                <i class="fas fa-sign-out-alt w-6"></i>
+                                <span>Log Out</span>
+                            </a>
+                        </li>
+                    </ul>
+                </nav>
+            </div>
+            
+            <!-- 主内容区 -->
+            <div class="flex-1 p-6 overflow-y-auto">
+                <div class="flex justify-between items-center mb-6">
+                    <h1 class="text-2xl font-bold">Knowledge Base</h1>
+                    <div class="flex gap-2">
+                        <button class="text-sm bg-gray-100 text-gray-700 px-3 py-1.5 rounded-md hover:bg-gray-200 transition flex items-center">
+                            <i class="fas fa-filter mr-1"></i> 筛选
+                        </button>
+                        <button class="text-sm bg-blue-500 text-white px-3 py-1.5 rounded-md hover:bg-blue-600 transition flex items-center">
+                            <i class="fas fa-plus mr-1"></i> 提交新问题
+                        </button>
+                    </div>
+                </div>
+                
+                <!-- 搜索框 -->
+                <div class="relative mb-6">
+                    <div class="absolute inset-y-0 left-0 flex items-center pl-3 pointer-events-none">
+                        <i class="fas fa-search text-gray-400"></i>
+                    </div>
+                    <input type="text" class="block w-full p-3 pl-10 text-sm border border-gray-300 rounded-lg bg-white focus:ring-2 focus:ring-blue-500 focus:border-blue-500" placeholder="Search knowledge base...">
+                </div>
+                
+                <!-- 分类标签 -->
+                <div class="flex gap-2 mb-6 overflow-x-auto pb-2">
+                    <button class="whitespace-nowrap bg-blue-100 text-blue-800 text-xs font-medium px-3 py-1.5 rounded-full">
+                        All Topics
+                    </button>
+                    <button class="whitespace-nowrap bg-gray-100 text-gray-800 text-xs font-medium px-3 py-1.5 rounded-full">
+                        <i class="fas fa-briefcase mr-1"></i> Company Policy
+                    </button>
+                    <button class="whitespace-nowrap bg-gray-100 text-gray-800 text-xs font-medium px-3 py-1.5 rounded-full">
+                        <i class="fas fa-tools mr-1"></i> Tools & Systems
+                    </button>
+                    <button class="whitespace-nowrap bg-gray-100 text-gray-800 text-xs font-medium px-3 py-1.5 rounded-full">
+                        <i class="fas fa-users mr-1"></i> Team Communication
+                    </button>
+                    <button class="whitespace-nowrap bg-gray-100 text-gray-800 text-xs font-medium px-3 py-1.5 rounded-full">
+                        <i class="fas fa-tasks mr-1"></i> Work Processes
+                    </button>
+                    <button class="whitespace-nowrap bg-gray-100 text-gray-800 text-xs font-medium px-3 py-1.5 rounded-full">
+                        <i class="fas fa-graduation-cap mr-1"></i> Skills Development
+                    </button>
+                    <button class="whitespace-nowrap bg-gray-100 text-gray-800 text-xs font-medium px-3 py-1.5 rounded-full">
+                        <i class="fas fa-building mr-1"></i> Office Information
+                    </button>
+                </div>
+                
+                <!-- 标签页 -->
+                <div class="border-b border-gray-200 mb-6">
+                    <div class="flex space-x-8">
+                        <button class="tab-active px-4 py-2 text-sm font-medium focus:outline-none">
+                            All Answers
+                        </button>
+                        <button class="px-4 py-2 text-sm font-medium text-gray-500 hover:text-gray-700 focus:outline-none">
+                            My Favorites
+                        </button>
+                        <button class="px-4 py-2 text-sm font-medium text-gray-500 hover:text-gray-700 focus:outline-none">
+                            Common Questions
+                        </button>
+                    </div>
+                </div>
+                
+                <!-- 推荐问题 -->
+                <div class="mb-8">
+                    <h2 class="text-lg font-semibold mb-4">Recommended for you</h2>
+                    <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
+                        <div class="knowledge-card bg-white p-4 rounded-lg border border-gray-200 shadow-sm">
+                            <div class="flex justify-between items-start mb-2">
+                                <h3 class="font-medium">How to request feedback from my mentor?</h3>
+                                <button class="text-gray-400 hover:text-blue-500">
+                                    <i class="far fa-bookmark"></i>
+                                </button>
+                            </div>
+                            <p class="text-sm text-gray-600 mb-3">
+                                Learn about the best practices for requesting constructive feedback from your mentor for your marketing projects.
+                            </p>
+                            <div class="flex flex-wrap gap-2 mb-3">
+                                <span class="tag bg-blue-100 text-blue-800 text-xs px-2 py-0.5 rounded">Team Communication</span>
+                                <span class="tag bg-gray-100 text-gray-800 text-xs px-2 py-0.5 rounded">Skills Development</span>
+                            </div>
+                            <div class="flex justify-between items-center text-xs text-gray-500">
+                                <div>Updated 3 days ago</div>
+                                <div>5 people found useful</div>
+                            </div>
+                        </div>
+                        
+                        <div class="knowledge-card bg-white p-4 rounded-lg border border-gray-200 shadow-sm">
+                            <div class="flex justify-between items-start mb-2">
+                                <h3 class="font-medium">Marketing team meeting schedules and protocols</h3>
+                                <button class="text-blue-500 hover:text-blue-700">
+                                    <i class="fas fa-bookmark"></i>
+                                </button>
+                            </div>
+                            <p class="text-sm text-gray-600 mb-3">
+                                Information about the weekly and monthly marketing team meetings, including preparation guidelines.
+                            </p>
+                            <div class="flex flex-wrap gap-2 mb-3">
+                                <span class="tag bg-green-100 text-green-800 text-xs px-2 py-0.5 rounded">Work Processes</span>
+                            </div>
+                            <div class="flex justify-between items-center text-xs text-gray-500">
+                                <div>Updated 1 week ago</div>
+                                <div>12 people found useful</div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- 最近添加 -->
+                <div class="mb-6">
+                    <h2 class="text-lg font-semibold mb-4">Recently Added</h2>
+                    
+                    <div class="space-y-4">
+                        <div class="knowledge-card bg-white p-4 rounded-lg border border-gray-200 shadow-sm">
+                            <div class="flex justify-between items-start mb-3">
+                                <h3 class="font-medium">How to create a social media content calendar?</h3>
+                                <div class="text-xs bg-green-100 text-green-600 px-2 py-0.5 rounded-full">New</div>
+                            </div>
+                            <p class="text-sm text-gray-600 mb-3">
+                                Step-by-step guide on creating and maintaining an effective social media content calendar for marketing campaigns.
+                            </p>
+                            
+                            <div class="bg-gray-50 rounded-lg p-3 mb-3">
+                                <div class="flex items-start">
+                                    <div class="flex-shrink-0 mr-2">
+                                        <div class="w-8 h-8 rounded-full bg-blue-500 flex items-center justify-center text-white">
+                                            <i class="fas fa-user-tie text-xs"></i>
+                                        </div>
+                                    </div>
+                                    <div>
+                                        <div class="text-xs font-medium text-gray-700 mb-1">Added yesterday</div>
+                                        <div class="flex space-x-2">
+                                            <span class="bg-purple-100 text-purple-700 text-xs px-2 py-1 rounded-full">Tools & Systems</span>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            
+                            <div class="flex flex-wrap gap-2 mb-3">
+                                <span class="tag bg-purple-100 text-purple-800 text-xs px-2 py-0.5 rounded">Tools & Systems</span>
+                            </div>
+                            
+                            <div class="flex justify-between items-center text-xs text-gray-500">
+                                <div class="flex items-center">
+                                    <button class="text-gray-400 hover:text-blue-500 mr-4">
+                                        <i class="far fa-bookmark"></i>
+                                    </button>
+                                    <button class="text-gray-400 hover:text-green-500 mr-1">
+                                        <i class="far fa-thumbs-up"></i>
+                                    </button>
+                                    <span class="mr-4">8</span>
+                                    <span>3 people commented</span>
+                                </div>
+                                <button class="text-blue-500 hover:text-blue-700">
+                                    View Details
+                                </button>
+                            </div>
+                        </div>
+                        
+                        <div class="knowledge-card bg-white p-4 rounded-lg border border-gray-200 shadow-sm">
+                            <div class="flex justify-between items-start mb-3">
+                                <h3 class="font-medium">Best practices for competitor analysis in digital marketing</h3>
+                                <div class="text-xs bg-green-100 text-green-600 px-2 py-0.5 rounded-full">New</div>
+                            </div>
+                            <p class="text-sm text-gray-600 mb-3">
+                                Learn effective methods to analyze competitors' digital marketing strategies and identify opportunities for our campaigns.
+                            </p>
+                            <div class="bg-gray-50 rounded-lg p-3 mb-3">
+                                <div class="flex items-start">
+                                    <div class="flex-shrink-0 mr-2">
+                                        <div class="w-8 h-8 rounded-full bg-blue-500 flex items-center justify-center text-white">
+                                            <i class="fas fa-user-tie text-xs"></i>
+                                        </div>
+                                    </div>
+                                    <div>
+                                        <div class="text-xs font-medium text-gray-700 mb-1">Added 2 days ago</div>
+                                        <div class="flex space-x-2">
+                                            <span class="bg-orange-100 text-orange-700 text-xs px-2 py-1 rounded-full">Skills Development</span>
+                                            <span class="bg-blue-100 text-blue-700 text-xs px-2 py-1 rounded-full">Work Processes</span>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            
+                            <div class="flex flex-wrap gap-2 mb-3">
+                                <span class="tag bg-orange-100 text-orange-800 text-xs px-2 py-0.5 rounded">Skills Development</span>
+                                <span class="tag bg-blue-100 text-blue-800 text-xs px-2 py-0.5 rounded">Work Processes</span>
+                            </div>
+                            
+                            <div class="flex justify-between items-center text-xs text-gray-500">
+                                <div class="flex items-center">
+                                    <button class="text-gray-400 hover:text-blue-500 mr-4">
+                                        <i class="far fa-bookmark"></i>
+                                    </button>
+                                    <button class="text-gray-400 hover:text-green-500 mr-1">
+                                        <i class="far fa-thumbs-up"></i>
+                                    </button>
+                                    <span class="mr-4">5</span>
+                                    <span>1 person commented</span>
+                                </div>
+                                <button class="text-blue-500 hover:text-blue-700">
+                                    View Details
+                                </button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="text-center">
+                    <button class="text-sm text-gray-500 hover:text-gray-700 transition flex items-center mx-auto">
+                        View More Articles <i class="fas fa-chevron-down ml-1"></i>
+                    </button>
+                </div>
+            </div>
+        </div>
+    </div>
+</body>
+</html>
